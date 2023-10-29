@@ -28,11 +28,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         pip install -r requirements.txt
-        
+
 
     - name: Run tests
       run: |
         python3 -m pytest
+
+    - name: Add Linode server to known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan 172.233.46.163 >> ~/.ssh/known_hosts
 
     - name: Deploy to Linode
       if: ${{ success() }}
