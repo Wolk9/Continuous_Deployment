@@ -30,7 +30,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python -m pytest
+        python3 -m pytest
 
     - name: Deploy to Linode
       if: ${{ success() }}
