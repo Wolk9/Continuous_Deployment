@@ -32,7 +32,6 @@ jobs:
     - name: Run tests
       run: |
         python3 -m pytest
-        
 
     - name: Add Linode server to known hosts
       run: |
