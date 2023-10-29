@@ -39,6 +39,7 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan 172.233.46.163 >> ~/.ssh/known_hosts
 
+        
     - name: Deploy to Linode
       if: ${{ success() }}
       run: |
