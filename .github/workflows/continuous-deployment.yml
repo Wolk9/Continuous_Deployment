@@ -44,5 +44,7 @@ jobs:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
         eval "$(ssh-agent -s)"
-        ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        ssh-add /tmp/deploy_key
         ssh -o "StrictHostKeyChecking no" -A root@172.233.46.163 'cd /var/www/html/ && git pull origin main && systemctl restart gunicorn && systemctl restart nginx && gunicorn main:app --bind 0.0.0.0'
