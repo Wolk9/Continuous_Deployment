@@ -36,7 +36,7 @@ jobs:
     steps:
     - name: Run tests
       run: |
-        python3 -m pytest
+        pytest tests/
     - name: Deploy to Linode
       if: ${{ success() }}
       uses: appleboy/ssh-action@master
