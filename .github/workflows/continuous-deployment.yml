@@ -34,9 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-    - name: Run tests
-      run: |
-        pytest tests/
+    # - name: Run tests
+    #   run: |
+    #     python3 pytest tests/
     - name: Deploy to Linode
       if: ${{ success() }}
       uses: appleboy/ssh-action@master
