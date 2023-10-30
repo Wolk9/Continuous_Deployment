@@ -44,9 +44,9 @@ jobs:
         port: 22
         script: |
           cd /var/www/html/
+          gunicorn main:app --bind 0.0.0.0'
           git pull origin main
           systemctl restart gunicorn
           systemctl restart nginx
-          gunicorn main:app --bind
+          gunicorn main:app --bind 0.0.0.0'
 
-          
