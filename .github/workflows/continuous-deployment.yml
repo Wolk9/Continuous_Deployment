@@ -6,13 +6,17 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -29,24 +33,20 @@ jobs:
         pip install pytest
         pip install -r requirements.txt
 
-
     - name: Run tests
       run: |
         python3 -m pytest
+        systemctl status gunicorn
 
     - name: Deploy to Linode
       if: ${{ success() }}
       uses: appleboy/ssh-action@master
       with:
-        host: 172.233.46.163
-        username: root
+        host: ${{ secrets.WINC_HOST }}
+        username: ${{ secrets.WINC_USER_NAME }}
         key: ${{ secrets.GH_SECRET }}
         port: 22
         script: |
           cd /var/www/html/
-          gunicorn main:app --bind 0.0.0.0'
           git pull origin main
-          systemctl restart gunicorn
-          systemctl restart nginx
-          gunicorn main:app --bind 0.0.0.0'
 
