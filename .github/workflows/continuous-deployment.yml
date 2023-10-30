@@ -24,10 +24,13 @@ jobs:
         node-version: '16.x'
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: |
+        pip install -r requirements.txt
+        pip install pytest
   
     - name: Run tests
-      run: python3 -m pytest  
+      run: |
+        pytest
   
   deploy: 
     runs-on: ubuntu-20.04
