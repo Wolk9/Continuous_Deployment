@@ -48,4 +48,5 @@ jobs:
           systemctl restart gunicorn
           systemctl restart nginx
           gunicorn main:app --bind
+
           
