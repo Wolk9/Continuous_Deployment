@@ -7,14 +7,14 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: 3.x
 
@@ -24,21 +24,16 @@ jobs:
         node-version: '16.x'
 
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest
-        pip install flask
-        pip install gunicorn --upgrade
-
+      run: pip install requirements.txt
+  
+    - name: Run tests
+      run: pytest  
+  
   deploy: 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: test
     steps:
-    # - name: Run tests
-    #   run: |
-    #     python3 pytest tests/
     - name: Deploy to Linode
-      if: ${{ success() }}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.WINC_HOST }}
