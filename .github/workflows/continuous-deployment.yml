@@ -34,12 +34,17 @@ jobs:
       run: |
         python3 -m pytest
 
-    - name: Add Linode server to known hosts
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan 172.233.46.163 >> ~/.ssh/known_hosts
-
     - name: Deploy to Linode
       if: ${{ success() }}
-      run: |
-        ssh root@172.233.46.163 'cd /var/www/html/ && git pull origin main && systemctl restart gunicorn && systemctl restart nginx && gunicorn main:app --bind 0.0.0.0'
+      uses: root@172.233.46.163
+      with:
+        host: 172.233.46.163
+        username: root
+        key: ${{ secrets.GH_SECRET }}
+        port: 22
+        script: |
+          cd /var/www/html/
+          git pull origin main
+          systemctl restart gunicorn
+          systemctl restart nginx
+          gunicorn main:app --bind
