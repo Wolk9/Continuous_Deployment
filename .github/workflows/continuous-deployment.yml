@@ -41,7 +41,6 @@ jobs:
     steps:
     - name: Run tests
       run: |
-        systemctl status gunicorn
         python3 -m pytest
     - name: Deploy to Linode
       if: ${{ success() }}
