@@ -41,7 +41,5 @@ jobs:
         key: ${{ secrets.GH_SECRET }}
         port: 22
         script: |
-          gunicorn main:app --bind 0.0.0.0 --timeout 120
-          cd /var/www/html/
-          git pull origin main
+          sh ./deploy.sh
 
