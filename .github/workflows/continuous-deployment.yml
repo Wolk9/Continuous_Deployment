@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         pip install -r requirements.txt
-        
+
 
     - name: Run tests
       run: |
@@ -39,9 +39,7 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan 172.233.46.163 >> ~/.ssh/known_hosts
 
-    - name: Deploy to Linode
+   - name: Deploy to Linode
       if: ${{ success() }}
       run: |
-        eval "$(ssh-agent -s)"
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-add -
-        ssh -o "StrictHostKeyChecking no" -A root@172.233.46.163 'cd /var/www/html/ && git pull origin main && systemctl restart gunicorn && systemctl restart nginx && gunicorn main:app --bind 0.0.0.0'
+        ssh root@172.233.46.163 'cd /var/www/html/ && git pull origin main && systemctl restart gunicorn && systemctl restart nginx && gunicorn main:app --bind 0.0.0.0'
