@@ -13,11 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-  build:
-    runs-on: ubuntu-latest
-    needs: test
-
-    steps:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -51,6 +46,7 @@ jobs:
         key: ${{ secrets.GH_SECRET }}
         port: 22
         script: |
+          gunicorn main:app --bind 0.0.0.0 --timeout 120
           cd /var/www/html/
           git pull origin main
 
