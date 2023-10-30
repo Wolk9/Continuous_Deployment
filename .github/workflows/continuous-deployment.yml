@@ -1,3 +1,7 @@
+name: Continuous Deployment
+
+on:
+  push:
     branches:
       - main
 
@@ -45,3 +49,4 @@ jobs:
         port: 22
         script: |
           sh ./deploy.sh
+
