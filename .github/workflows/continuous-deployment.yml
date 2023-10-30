@@ -34,10 +34,6 @@ jobs:
         pip install pytest
         pip install flask
         pip install gunicorn --upgrade
-    
-    - name: Run services
-      run: |
-        gunicorn main:app --bind 0.0.0.0
 
   deploy: 
     runs-on: ubuntu-latest
