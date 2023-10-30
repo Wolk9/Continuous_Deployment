@@ -36,7 +36,7 @@ jobs:
 
     - name: Deploy to Linode
       if: ${{ success() }}
-      uses: root@172.233.46.163
+      uses: appleboy/ssh-action@master
       with:
         host: 172.233.46.163
         username: root
