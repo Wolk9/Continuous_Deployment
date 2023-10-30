@@ -13,7 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,11 +33,14 @@ jobs:
         pip install pytest
         # pip install -r requirements.txt
 
+  deploy: 
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Run tests
       run: |
-        python3 -m pytest
         systemctl status gunicorn
-
+        python3 -m pytest
     - name: Deploy to Linode
       if: ${{ success() }}
       uses: appleboy/ssh-action@master
