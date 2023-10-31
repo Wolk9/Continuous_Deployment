@@ -25,12 +25,12 @@ jobs:
 
     - name: Install dependencies
       run: |
+        python3 -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest
-  
-    - name: Run tests
+       
+    - name: Run tests with pytest 
       run: |
-        pytest tests
+        pytest
 
   deploy: 
     runs-on: ubuntu-20.04
