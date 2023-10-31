@@ -53,9 +53,9 @@ jobs:
           script: |
             systemctl enable --now farm 
             cd /var/www/html/ 
-            git pull origin main
+            git pull origin main  
             echo "done" 
-            
+
 
 
 
