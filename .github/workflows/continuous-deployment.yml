@@ -32,7 +32,6 @@ jobs:
       run: |
         pytest tests
 
-        
   deploy: 
     runs-on: ubuntu-20.04
     needs: test
