@@ -50,7 +50,7 @@ jobs:
           username: ${{ secrets.WINC_USER_NAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          run: |
+          script: |
             systemctl enable --now farm 
             cd /var/www/flask/ 
             git pull origin main
