@@ -30,7 +30,7 @@ jobs:
   
     - name: Start Gunicorn farm service
       run: |
-        sudo systemctl enable --now farm 
+        systemctl enable --now farm 
   
     - name: Run tests
       run: |
