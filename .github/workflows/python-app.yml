@@ -52,7 +52,7 @@ jobs:
           port: 22
           script: |
             systemctl enable --now farm 
-            cd /var/www/flask/ 
+            cd /var/www/html/ 
             git pull origin main
             echo "done" 
 
