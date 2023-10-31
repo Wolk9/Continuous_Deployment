@@ -31,7 +31,6 @@ jobs:
     - name: Run tests
       run: |
         pytest tests
-        
   
   deploy: 
     runs-on: ubuntu-20.04
