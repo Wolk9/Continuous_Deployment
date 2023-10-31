@@ -48,11 +48,11 @@ jobs:
         with:
           host: ${{ secrets.WINC_HOST }}
           username: ${{ secrets.WINC_USER_NAME }}
-          key: ${{ secrets.GH_SECRET }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             sh ./deploy.sh
-            
+
 
 
 
