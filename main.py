@@ -12,3 +12,6 @@ def index():
 @app.route('/cow')
 def cow():
     return 'MOoooOo!'
+
+def add_numbers(a, b):
+    return a + b
